@@ -27,3 +27,10 @@ jobs:
     displayName: 'Move .env file'
     inputs:
       script: mv $(Build.SourcesDirectory)/.env.example $(Build.SourcesDirectory)/.env
+
+  - task: DockerCompose@0
+    displayName: Run Docker-compose-up
+    inputs:
+      containerregistrytype: Container Registry
+      dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yaml
+      dockerComposeCommand: 'up -d'
